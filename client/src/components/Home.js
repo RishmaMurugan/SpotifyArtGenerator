@@ -1,5 +1,5 @@
 import React, {Component} from './node_modules/react';
-import './App.css';
+import '/App.css';
 import SpotifyWebApi from './node_modules/spotify-web-api-js';
 const spotifyApi = new SpotifyWebApi();
 
@@ -12,7 +12,8 @@ class Home extends Component {
       spotifyApi.setAccessToken(token);
     }
     this.state = {
-      loggedIn: token ? true : false
+      loggedIn: token ? true : false,
+      nowPlaying: {name: 'Not Checked', albumArt: ''}
     }
   }
   getHashParams() {
@@ -40,8 +41,19 @@ class Home extends Component {
   render() {
     return (
       <div className="App">
-          <h1>Test</h1>
-    </div>
+        <a href='http://localhost:8888' > Login to Spotify </a>
+        <div>
+          Now Playing: { this.state.nowPlaying.name }
+        </div>
+        <div>
+          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
+        </div>
+        { this.state.loggedIn &&
+        <button onClick={() => this.getNowPlaying()}>
+          Check Now Playing
+        </button>
+        } 
+      </div>
     );
   }
   

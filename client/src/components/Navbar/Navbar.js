@@ -31,7 +31,9 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                <Button>Login</Button>
+                <a href="http://localhost:8888/login">
+                    <Button>Login</Button>
+                </a>
             </nav>
         )
     }
